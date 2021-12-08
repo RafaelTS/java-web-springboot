@@ -1,7 +1,9 @@
 package br.sc.rafael.javawebspringboot.resource;
 
 import br.sc.rafael.javawebspringboot.entities.Category;
+import br.sc.rafael.javawebspringboot.entities.Product;
 import br.sc.rafael.javawebspringboot.repositories.CategoryRepository;
+import br.sc.rafael.javawebspringboot.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,25 +11,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/categories")
-public class CategoryResource {
+@RequestMapping(value = "/products")
+public class ProductResource {
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private ProductRepository productRepository;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = categoryRepository.findAll();
+    public ResponseEntity<List<Product>> findAll() {
+        List<Product> list = productRepository.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
-        Category category = categoryRepository.findById(id).get();
-        return ResponseEntity.ok().body(category);
+    public ResponseEntity<Product> findById(@PathVariable Long id) {
+        Product product = productRepository.findById(id).get();
+        return ResponseEntity.ok().body(product);
     }
+
 }
